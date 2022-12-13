@@ -17,7 +17,6 @@ function TodoContainer() {
       type: postTodo.toString(),
       payload: payload
     })
-    dispatch({ type: getTodo.toString() })
   }
 
   const handleDelete = (payload) => {
@@ -26,7 +25,6 @@ function TodoContainer() {
       payload: payload
     })
     setModal(true)
-    dispatch({ type: getTodo.toString() })
   }
 
   return (
