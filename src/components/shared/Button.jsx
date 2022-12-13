@@ -6,15 +6,17 @@ function Button({
   text,
   isIcon = false,
   icon,
+  classes,
   onClick = () => { }
 }) {
   return (
     <Fragment>
       {
-        isIcon && (
+        isIcon ? (
           <button
             className='bg-main text-white rounded-3xl py-2.5 px-5'
             onClick={onClick}
+            type='submit'
           >
             <div
               className='flex items-center justify-between gap-2'
@@ -23,9 +25,17 @@ function Button({
               <p className='font-poppins'>{text}</p>
             </div>
           </button>
-
+        ) : (
+          <button
+            className={`rounded-3xl py-2.5 px-5 ${classes}`}
+            onClick={onClick}
+            type='submit'
+          >
+            <p> {text}</p>
+          </button>
         )
       }
+
     </Fragment >
   )
 }
@@ -34,6 +44,7 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   isIcon: PropTypes.bool,
   icon: PropTypes.any,
+  classes: PropTypes.string,
   onClick: PropTypes.func
 }
 

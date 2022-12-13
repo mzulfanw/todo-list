@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import { Button, Menu } from '@/components/shared'
 import { PLUS } from '@/lib/iconConstant'
 
-function HomeTodoToolbar() {
+function HomeTodoToolbar({
+  handleTodo = () => { }
+}) {
   return (
     <div
       className='flex items-center justify-between'
@@ -13,6 +15,7 @@ function HomeTodoToolbar() {
         text='Tambah'
         isIcon
         icon={PLUS}
+        onClick={handleTodo}
       />
       <Menu
         text='here'
@@ -23,6 +26,8 @@ function HomeTodoToolbar() {
   )
 }
 
-HomeTodoToolbar.propTypes = {}
+HomeTodoToolbar.propTypes = {
+  handleTodo: PropTypes.func
+}
 
 export default HomeTodoToolbar

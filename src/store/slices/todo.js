@@ -1,9 +1,9 @@
-import { get } from '@/lib/interceptors'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   loading: false,
-  todo: []
+  todo: [],
+  modal: false
 }
 
 const todosSlice = createSlice({
@@ -15,28 +15,37 @@ const todosSlice = createSlice({
     },
     getTodoSuccess: (state, action) => {
       state.loading = false
-      state.todo = action.payload
+      state.todo = action?.payload
     },
     getTodoFailed: (state) => {
       state.loading = false
+    },
+    postTodo: (state) => {
+      state.loading = true
+    },
+    postTodoSuccess: (state) => {
+      state.loading = false
+    },
+    deleteTodo: (state) => {
+      state.loading = true
+      state.modal = false
+    },
+    deleteTodoSuccess: (state) => {
+      state.loading = false
+      state.modal = true
     }
   }
 })
 
 
-export const { getTodo, getTodoSuccess, getTodoFailed } = todosSlice.actions
+export const {
+  getTodo,
+  getTodoSuccess,
+  getTodoFailed,
+  postTodo,
+  postTodoSuccess,
+  deleteTodo,
+  deleteTodoSuccess
+} = todosSlice.actions
 export default todosSlice.reducer
 
-//* Async 
-export function fetchTodos() {
-  return async dispatch => {
-    dispatch(getTodo())
-
-    try {
-      const res = await get('activity-groups?email=mzulfan303@gmail.com')
-      dispatch(getTodoSuccess(res.data))
-    } catch (err) {
-      dispatch(getTodoFailed())
-    }
-  }
-}
