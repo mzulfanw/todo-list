@@ -34,6 +34,8 @@ function* postTodoSagas(action) {
     yield call(postTodoAction, action?.payload)
 
     yield put({ type: postTodoSuccess.toString() })
+
+    yield put({ type: getTodo.toString() })
   } catch (err) {
     console.log(err)
   }
@@ -44,6 +46,8 @@ function* deleteTodoSagas(action) {
     yield call(delTodo, action?.payload)
 
     yield put({ type: deleteTodoSuccess.toString() })
+
+    yield put({ type: getTodo.toString() })
   } catch (err) {
     console.log(err)
   }
