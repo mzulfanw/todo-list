@@ -1,2 +1,5 @@
 export const PLUS = '/assets/icon/plus.svg'
 export const SORT = '/assets/icon/sort.svg'
+export const TRASH = '/assets/icon/trash.svg'
+export const WARNING = '/assets/icon/warning.svg'
+export const SUCCESS = '/assets/icon/success.svg'

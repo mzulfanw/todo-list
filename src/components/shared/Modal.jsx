@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 
 function Modal({
   open = false,
-  onClose = () => { }
+  onClose = () => { },
+  children
 }) {
   return (
     <Transition
@@ -14,7 +15,7 @@ function Modal({
     >
       <Dialog
         as='div'
-        className='fixed inset-0 z-10 overflow-y-auto'
+        className='fixed inset-0 z-10 overflow-y-auto '
         onClose={onClose}
       >
         <div className='min-h-screen px-4 text-center'>
@@ -27,7 +28,7 @@ function Modal({
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
-            <Dialog.Overlay className='fixed inset-0' />
+            <Dialog.Overlay className='fixed inset-0 bg-modal bg-opacity-50' />
           </Transition.Child>
           {/* This element is to trick the browser into centering the modal contents. */}
           <span
@@ -46,14 +47,15 @@ function Modal({
             leaveTo='opacity-0 scale-95'
           >
             <div className='inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
-              <Dialog.Title
+              {/* <Dialog.Title
                 as='h3'
-                className='text-lg font-medium leading-6 text-gray-900'
+                className='text-lg font-medium leading-6'
               >
                 Modal
-              </Dialog.Title>
-              <div className='mt-2'>
-                <p className='text-sm text-gray-500 border-t pt-2'>
+              </Dialog.Title> */}
+              {children}
+              {/* <div className='mt-2'>
+                <p className='text-sm border-t pt-2'>
                   This is a dialog box
                 </p>
               </div>
@@ -66,7 +68,7 @@ function Modal({
                 >
                   Close
                 </button>
-              </div>
+              </div> */}
             </div>
           </Transition.Child>
         </div>
@@ -77,7 +79,8 @@ function Modal({
 
 Modal.propTypes = {
   open: PropTypes.bool,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  children: PropTypes.node
 }
 
 export default Modal

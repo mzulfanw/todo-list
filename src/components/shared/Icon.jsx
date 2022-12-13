@@ -25,7 +25,7 @@ function Icon({
 Icon.propTypes = {
   path: PropTypes.string,
   classes: PropTypes.string,
-  maxWidth: PropTypes.string
+  maxWidth: PropTypes.number
 }
 
 export default Icon

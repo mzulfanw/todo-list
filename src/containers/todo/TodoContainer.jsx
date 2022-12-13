@@ -1,18 +1,41 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import HomeTodo from '@/components/pages/todo/HomeTodo'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchTodos } from '@/store/slices/todo'
+import { deleteTodo, getTodo, postTodo } from '@/store/slices/todo'
+import { useAppDispatch, useAppSelector } from '@/hooks'
 
 function TodoContainer() {
-  const dispatch = useDispatch()
-  const selector = useSelector((state) => state.todo)
+  const dispatch = useAppDispatch()
+  const [modal, setModal] = useState(false)
+  const selector = useAppSelector((state) => state.todo)
 
   useEffect(() => {
-    dispatch(fetchTodos())
-  }, [])
+    dispatch({ type: getTodo.toString() })
+  }, [dispatch])
+
+  const handleSubmit = (payload) => {
+    dispatch({
+      type: postTodo.toString(),
+      payload: payload
+    })
+    dispatch({ type: getTodo.toString() })
+  }
+
+  const handleDelete = (payload) => {
+    dispatch({
+      type: deleteTodo.toString(),
+      payload: payload
+    })
+    setModal(true)
+    dispatch({ type: getTodo.toString() })
+  }
+
   return (
     <HomeTodo
       data={selector}
+      modal={modal}
+      setModal={setModal}
+      handleTodo={handleSubmit}
+      handleDelete={handleDelete}
     />
   )
 }
