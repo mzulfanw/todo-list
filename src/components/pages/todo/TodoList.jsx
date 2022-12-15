@@ -6,7 +6,8 @@ import { Icon, Modal, Button } from '@/components/shared'
 
 function TodoList({
   todos,
-  deleteTodo = () => { }
+  deleteTodo = () => { },
+  handleChangePage = () => { }
 }) {
   const [openModal, setopenModal] = useState(false)
   const [title, setTitle] = useState('')
@@ -15,6 +16,8 @@ function TodoList({
   const handleDelete = () => {
     deleteTodo(id)
     setopenModal(false)
+    const html = document.getElementById('mount')
+    html.removeAttribute('style')
   }
 
   return (
@@ -23,17 +26,17 @@ function TodoList({
         todos?.data?.length > 0 && (
           todos.data?.map((item, index) => (
             <div
-              className='bg-white w-[230px] h-[234px] shadow-lg mb-10 rounded-xl'
+              className='bg-white w-[230px] h-[234px] shadow-lg mb-10 rounded-xl cursor-pointer'
               key={index}
             >
               <div className='py-[22px] px-[27px]'>
-                <div>
+                <div onClick={() => { handleChangePage(item?.id) }}>
                   <h5 className='font-bold text-lg'>{item?.title}</h5>
                 </div>
                 <div
                   className='flex items-center justify-between mt-32'
                 >
-                  <p className='text-sm text-gray-text'>{formatDate(item?.created_at)}</p>
+                  <p className='text-sm text-gray-400'>{formatDate(item?.created_at)}</p>
                   <Icon
                     path={TRASH}
                     maxWidth={16}
@@ -81,17 +84,21 @@ function TodoList({
           </div>
           <div className='flex justify-around'>
             <Button
-              classes='bg-cancel w-[150px] h-[54px] font-bold font-poppins'
-              text='Batal'
+              classes='bg-gray-200 w-[150px] h-[54px] font-bold font-poppins'
+              // text='Batal'
               onClick={() => {
                 setopenModal(false)
               }}
-            />
+            >
+              <span>Batal</span>
+            </Button>
             <Button
-              classes='bg-delete text-white w-[150px] h-[54px] font-bold font-poppins'
-              text='Hapus'
+              classes='bg-sky-500 text-white w-[150px] h-[54px] font-bold font-poppins'
+              // text='Hapus'
               onClick={handleDelete}
-            />
+            >
+              <span>Hapus</span>
+            </Button>
           </div>
         </div>
       </Modal>
@@ -101,7 +108,8 @@ function TodoList({
 
 TodoList.propTypes = {
   todos: PropTypes.any,
-  deleteTodo: PropTypes.func
+  deleteTodo: PropTypes.func,
+  handleChangePage: PropTypes.func
 }
 
 export default TodoList

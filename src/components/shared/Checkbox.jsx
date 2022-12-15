@@ -4,16 +4,27 @@ import PropTypes from 'prop-types'
 function Checkbox({
   name,
   value,
-  onChange = () => { }
+  onChange = () => { },
+  ...others
 }) {
+
+  const convertParams = (name, value) => ({
+    target: {
+      name, value
+    }
+  })
+
   return (
     <div>
       <input
         type='checkbox'
         name={name}
-        className='bg-main border-main text-main focus:ring-main'
+        className=' border-slate-300 text-sky-500 focus:ring-sky-500'
         value={value}
-        onChange={onChange}
+        onChange={e => {
+          onChange(convertParams(name, e.target.value))
+        }}
+        {...others}
       />
     </div>
   )
