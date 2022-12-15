@@ -72,8 +72,8 @@ export const post = (url, body) => {
  * @param {string} url 
  * @param {*} body
  */
-export const put = (url, body) => {
-  return services.put(`${url}`, body)
+export const patch = (url, body) => {
+  return services.patch(`${url}`, body)
 }
 
 /**

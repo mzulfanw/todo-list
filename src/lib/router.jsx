@@ -1,9 +1,11 @@
 
 import Layout from '@/components/core/Layout'
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import Index from '@/pages/todo/Index'
 import Create from '@/pages/todo/Create'
+
+const IndexPage = lazy(() => import('@/pages/todo/Index'))
+const DetailPage = lazy(() => import('@/pages/todo/Detail'))
 
 export const router = createBrowserRouter([
   {
@@ -12,11 +14,15 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Index />
+        element: <Suspense fallback={<p>loading</p>}><IndexPage /></Suspense>
       },
       {
         path: '/create',
         element: <Create />
+      },
+      {
+        path: '/detail/:id',
+        element: <Suspense fallback={<p>loading</p>}><DetailPage /></Suspense>
       }
     ]
   }

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import TodoList from './TodoList'
 import { Modal, Icon } from '@/components/shared'
 import { SUCCESS } from '@/lib/iconConstant'
+import { useNavigate } from 'react-router-dom'
 
 function HomeTodo({
   data,
@@ -12,12 +13,18 @@ function HomeTodo({
   handleTodo = () => { },
   handleDelete = () => { }
 }) {
+  const navigate = useNavigate()
+
   const post = () => {
     const payload = {
       title: 'New Activity',
       email: 'mzulfan303@gmail.com'
     }
     handleTodo(payload)
+  }
+
+  const handleChangePage = (id) => {
+    navigate(`/detail/${id}`)
   }
   return (
     <>
@@ -45,6 +52,7 @@ function HomeTodo({
       <TodoList
         todos={data?.todo}
         deleteTodo={handleDelete}
+        handleChangePage={handleChangePage}
       />
     </>
   )

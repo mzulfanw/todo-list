@@ -1,11 +1,10 @@
-
 import React from 'react'
 
 function Header() {
   return (
     <div
       data-cy='header'
-      className='h-[105px] bg-main text-white'
+      className='h-[105px] bg-sky-500 text-white'
     >
       <div
         className='max-w-[1000px] lg:pl-[220px] md:pl-[220px] pl-[80px] pt-[38px]'

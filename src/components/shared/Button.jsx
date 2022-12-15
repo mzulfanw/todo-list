@@ -7,14 +7,16 @@ function Button({
   isIcon = false,
   icon,
   classes,
-  onClick = () => { }
+  onClick = () => { },
+  children,
+  ...others
 }) {
   return (
     <Fragment>
       {
         isIcon ? (
           <button
-            className='bg-main text-white rounded-3xl py-2.5 px-5'
+            className='bg-sky-500 text-white rounded-3xl py-2.5 px-5'
             onClick={onClick}
             type='submit'
           >
@@ -29,9 +31,10 @@ function Button({
           <button
             className={`rounded-3xl py-2.5 px-5 ${classes}`}
             onClick={onClick}
-            type='submit'
+            type='button'
+            {...others}
           >
-            <p> {text}</p>
+            {children}
           </button>
         )
       }
@@ -45,6 +48,7 @@ Button.propTypes = {
   isIcon: PropTypes.bool,
   icon: PropTypes.any,
   classes: PropTypes.string,
+  children: PropTypes.node,
   onClick: PropTypes.func
 }
 

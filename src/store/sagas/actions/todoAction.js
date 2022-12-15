@@ -1,4 +1,4 @@
-import { del, get, post } from '@/lib/interceptors'
+import { del, get, post, patch } from '@/lib/interceptors'
 
 /**
  * Get todo 
@@ -27,4 +27,46 @@ export const postTodo = (payload) => {
  */
 export const deleteTodo = (payload) => {
   return del(`activity-groups/${payload}`)
+}
+
+/**
+ * Get Detail Todo
+ * 
+ * @param {*} payload 
+ * @returns
+ */
+export const getDetailTodo = (payload) => {
+  return get(`activity-groups/${payload}`)
+}
+
+/**
+ * Update Todo 
+ * 
+ * @param {object} payload 
+ * @returns
+ */
+export const updateTodo = (payload) => {
+  const { id, newActivity } = payload
+  return patch(`activity-groups/${id}`, newActivity)
+}
+
+/**
+ * Post Todo Items
+ * 
+ * @param {*} payload 
+ * @returns
+ */
+export const postTodoItems = (payload) => {
+  return post(`todo-items`, payload)
+}
+
+/**
+ * Update Todo Items 
+ * 
+ * @param {*} payload 
+ * @returns
+ */
+export const updateTodoItems = (payload) => {
+  const { id, is_active } = payload
+  return patch(`todo-items/${id}`, is_active)
 }
