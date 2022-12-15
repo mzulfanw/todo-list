@@ -14,7 +14,7 @@ function TodoDetailContainer() {
       type: getDetailTodo.toString(),
       payload: id
     })
-  }, [id])
+  }, [id, dispatch])
 
   const handleUpdateTodo = (payload) => {
     dispatch({

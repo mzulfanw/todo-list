@@ -77,7 +77,7 @@ function TodoList({
       }
       <Modal
         open={openModal}
-
+        data-cy='modal-delete'
       >
         <div className='flex-col items-center justify-center text-center '>
           <div>
@@ -85,9 +85,11 @@ function TodoList({
               path={WARNING}
               classes='block mx-auto mt-[30px]'
               maxWidth={68}
+              data-cy='modal-delete-icon'
             />
             <p
               className='text-lg my-[46px] font-normal'
+              data-cy='modal-delete-title'
             >
               Apakah anda yakin menghapus activity &nbsp;
               <strong>{`"${title}"`}</strong>
@@ -98,6 +100,7 @@ function TodoList({
             <Button
               classes='bg-gray-200 w-[150px] h-[54px] font-bold font-poppins'
               // text='Batal'
+              data-cy='modal-delete-cancel-button'
               onClick={() => {
                 setopenModal(false)
               }}
@@ -107,6 +110,7 @@ function TodoList({
             <Button
               classes='bg-sky-500 text-white w-[150px] h-[54px] font-bold font-poppins'
               // text='Hapus'
+              data-cy='modal-delete-confirm-button'
               onClick={handleDelete}
             >
               <span>Hapus</span>
