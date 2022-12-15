@@ -32,12 +32,22 @@ function TodoList({
             >
               <div className='py-[22px] px-[27px]'>
                 <div onClick={() => { handleChangePage(item?.id) }}>
-                  <h5 className='font-bold text-lg'>{item?.title}</h5>
+                  <h5
+                    className='font-bold text-lg'
+                    data-cy='activity-item-title'
+                  >
+                    {item?.title}
+                  </h5>
                 </div>
                 <div
                   className='flex items-center justify-between mt-32'
                 >
-                  <p className='text-sm text-gray-400'>{formatDate(item?.created_at)}</p>
+                  <p
+                    className='text-sm text-gray-400'
+                    data-cy='activity-item-date'
+                  >
+                    {formatDate(item?.created_at)}
+                  </p>
                   <Icon
                     path={TRASH}
                     maxWidth={16}
@@ -47,6 +57,7 @@ function TodoList({
                       setTitle(item?.title)
                       setId(item?.id)
                     }}
+                    data-cy='activity-item-delete-button'
                   />
                 </div>
               </div>

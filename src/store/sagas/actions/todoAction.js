@@ -47,7 +47,7 @@ export const getDetailTodo = (payload) => {
  */
 export const updateTodo = (payload) => {
   const { id, newActivity } = payload
-  return patch(`activity-groups/${id}`, newActivity)
+  return patch(`activity-groups/${id}`, { title: newActivity })
 }
 
 /**

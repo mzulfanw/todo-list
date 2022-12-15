@@ -3,8 +3,9 @@ import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Input, Button, Modal, Icon, Listbox } from '@/components/shared'
 import { useOutsideClick } from '@/hooks'
-import { PLUS, CLOSE } from '@/lib/iconConstant'
+import { PLUS, CLOSE, EDIT, BACK } from '@/lib/iconConstant'
 import { IndicatorList } from '@/lib/constants'
+import { useNavigate } from 'react-router-dom'
 
 function TodoForm({
   values,
@@ -12,13 +13,17 @@ function TodoForm({
   handleUpdateTodo = () => { },
   handleCreateTodos = () => { }
 }) {
+  const navigate = useNavigate()
   const [openModal, setOpenModal] = useState(false)
+  const [onEdit, setOnEdit] = useState(false)
 
   const handleUpdate = () => {
+    setOnEdit(!onEdit)
     const payload = {
       id: values.id,
       newActivity: values.title
     }
+    handleUpdateTodo(payload)
   }
 
   const handleCreate = () => {
@@ -30,30 +35,59 @@ function TodoForm({
     handleCreateTodos(payload)
   }
 
-  const ref = useOutsideClick(handleUpdate)
+  // const ref = useOutsideClick(handleUpdate)
 
-  const handleProgation = (e) => {
-    e.stopPropagation()
-  }
+  // const handleProgation = (e) => {
+  //   e.stopPropagation()
+  // }
+
   return (
     <Fragment>
       <div
         className='flex items-center justify-between pb-4'
       >
-        <div>
+        <div className='flex gap-8'>
+          <Icon
+            path={BACK}
+            maxWidth={30}
+            classes='cursor-pointer'
+            data-cy='todo-back-button'
+            onClick={() => navigate(-1)}
+          />
           <div
-            onClick={handleProgation}
+            // onClick={handleProgation}
             className={'border-b-2'}
-            ref={ref}
           >
-            <Input
-              name='title'
-              onChange={onChange}
-              value={values.title}
-              // ref={ref}
-              className='bg-cancel border-none focus:ring-0'
-            />
+            {
+              onEdit ? (
+                <Input
+                  name='title'
+                  onChange={onChange}
+                  value={values.title}
+                  // ref={ref}
+                  className={`bg-gray-100 border-none focus:autofill:ring-0`}
+                  data-cy='todo-title'
+                />
+              ) : (
+                <Input
+                  name='title'
+                  // onChange={onChange}
+                  value={values.title}
+                  // ref={ref}
+                  className={`bg-gray-100 border-none focus:autofill:ring-0`}
+                  data-cy='todo-title'
+                />
+              )
+            }
+
           </div>
+          <Icon
+            path={EDIT}
+            classes='cursor-pointer'
+            data-cy='todo-title-edit-button'
+            maxWidth={30}
+            onClick={handleUpdate}
+          />
         </div>
         <div>
           <Button
@@ -61,6 +95,7 @@ function TodoForm({
             isIcon
             icon={PLUS}
             onClick={() => { setOpenModal(true) }}
+            data-cy='todo-add-button'
           />
         </div>
       </div>
@@ -68,6 +103,7 @@ function TodoForm({
       <Modal
         open={openModal}
         width='max-w-xl'
+        data-cy='modal-add'
       // onClose={() => { setOpenModal(false) }}
       >
         {/* Modal Header */}

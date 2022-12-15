@@ -61,9 +61,20 @@ function TodoDetail({
               <DetailList
                 item={item}
                 key={index}
+                index={index}
                 handleUpdateTodoItems={handleUpdateTodoItems}
               />
             ))
+          )
+        }
+        {
+          data?.detail?.todo_items?.length === 0 && (
+            <img
+              src='/assets/image/todo-empty-state.png'
+              alt=''
+              className='block mx-auto'
+              data-cy='todo-empty-state'
+            />
           )
         }
       </div>
