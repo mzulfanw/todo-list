@@ -89,13 +89,15 @@ function TodoForm({
             onClick={handleUpdate}
           />
         </div>
-        <div>
+        <div
+          onClick={() => { setOpenModal(true) }}
+          data-cy='todo-add-button'
+        >
           <Button
             text='Tambah'
             isIcon
             icon={PLUS}
-            onClick={() => { setOpenModal(true) }}
-            data-cy='todo-add-button'
+
           />
         </div>
       </div>
@@ -159,6 +161,7 @@ function TodoForm({
           <Button
             classes='bg-sky-500 text-white'
             onClick={handleCreate}
+            data-cy='modal-add-save-button'
           >
             <span>Simpan</span>
           </Button>
