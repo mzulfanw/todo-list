@@ -30,6 +30,7 @@ function Listbox({
         classes='bg-white border rounded-none flex items-center justify-between mt-2 lg:mt-4 px-4 lg:px-6 w-40 lg:w-48 h-12 lg:h-14 rounded-md transition outline-none border border-neutral-400 hover:border-primary-500 focus:border-primary-500'
         name='here'
         onClick={() => { setIsOpen(state => !state) }}
+        data-cy='modal-add-priority-dropdown'
       >
         {
           found && (

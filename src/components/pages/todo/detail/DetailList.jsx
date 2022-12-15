@@ -47,7 +47,7 @@ function DetailList({
     setIsOpen(false)
     setTimeout(() => {
       sync()
-    }, 3000)
+    }, 1400)
   }
 
   return (
@@ -67,12 +67,13 @@ function DetailList({
           <Indicator data-cy='todo-item-priority-indicator' type={item.priority} />
           <span data-cy='todo-item-title'>{item.title}</span>
         </div>
-        <div>
+        <div
+          onClick={() => { (handleDeleteList(item.id, item.title)) }}
+          data-cy='todo-item-delete-button'
+        >
           <Icon
             path={TRASH}
             classes='cursor-pointer'
-            onClick={() => { (handleDeleteList(item.id, item.title)) }}
-            data-cy='todo-item-delete-button'
           />
         </div>
       </div>
