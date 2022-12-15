@@ -19,6 +19,7 @@ function Button({
             className='bg-sky-500 text-white rounded-3xl py-2.5 px-5'
             onClick={onClick}
             type='submit'
+            {...others}
           >
             <div
               className='flex items-center justify-between gap-2'

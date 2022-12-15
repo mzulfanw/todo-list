@@ -60,6 +60,12 @@ const todosSlice = createSlice({
     },
     updateTodoItemsSuccess: (state) => {
       state.loading = false
+    },
+    deleteTodoItemList: (state) => {
+      state.loading = true
+    },
+    deleteTodoItemSucess: (state) => {
+      state.loading = false
     }
   }
 })
@@ -80,7 +86,9 @@ export const {
   postTodoList,
   postTodoListSuccess,
   updateTodoItems,
-  updateTodoItemsSuccess
+  updateTodoItemsSuccess,
+  deleteTodoItemList,
+  deleteTodoItemSucess
 } = todosSlice.actions
 export default todosSlice.reducer
 
