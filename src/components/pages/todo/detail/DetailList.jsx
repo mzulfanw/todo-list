@@ -8,7 +8,6 @@ import { deleteTodoItemList, getDetailTodo } from '@/store/slices/todo'
 import { useParams } from 'react-router-dom'
 function DetailList({
   item,
-  index,
   handleUpdateTodoItems = () => { }
 }) {
   const { id } = useParams()
@@ -55,7 +54,7 @@ function DetailList({
     <Fragment>
       <div
         className='bg-white shadow-md mb-4 h-[80px] flex items-center px-6 justify-between'
-        data-cy={`todo-item-${index}`}
+        data-cy={`todo-item`}
       >
         <div className='flex gap-4 items-center justify-between'>
           <Checkbox
@@ -125,7 +124,6 @@ function DetailList({
 
 DetailList.propTypes = {
   item: PropTypes.object,
-  index: PropTypes.number,
   handleUpdateTodoItems: PropTypes.func
 }
 
