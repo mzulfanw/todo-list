@@ -28,7 +28,7 @@ function TodoList({
             <div
               className='bg-white w-[230px] h-[234px] shadow-lg mb-10 rounded-xl cursor-pointer'
               key={index}
-              data-cy={`activity-item-${index}`}
+              data-cy={`activity-item`}
             >
               <div className='py-[22px] px-[27px]'>
                 <div onClick={() => { handleChangePage(item?.id) }}>
