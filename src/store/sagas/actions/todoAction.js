@@ -68,5 +68,16 @@ export const postTodoItems = (payload) => {
  */
 export const updateTodoItems = (payload) => {
   const { id, is_active } = payload
-  return patch(`todo-items/${id}`, is_active)
+  return patch(`todo-items/${id}`, { is_active })
+}
+
+
+/**
+ * Delete Todo Items
+ * 
+ * @param {*} payload 
+ * @returns
+ */
+export const deleteTodoItemsList = (payload) => {
+  return del(`todo-items/${payload}`)
 }

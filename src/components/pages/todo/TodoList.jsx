@@ -28,6 +28,7 @@ function TodoList({
             <div
               className='bg-white w-[230px] h-[234px] shadow-lg mb-10 rounded-xl cursor-pointer'
               key={index}
+              data-cy={`activity-item-${index}`}
             >
               <div className='py-[22px] px-[27px]'>
                 <div onClick={() => { handleChangePage(item?.id) }}>
@@ -55,7 +56,7 @@ function TodoList({
       }
       {
         todos?.data?.length === 0 && (
-          <div>
+          <div data-cy='activity-empty-state'>
             <img
               src='/assets/image/activity-empty-state.svg '
               alt=''

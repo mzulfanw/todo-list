@@ -14,7 +14,9 @@ import {
   postTodoList,
   postTodoListSuccess,
   updateTodoItems,
-  updateTodoItemsSuccess
+  updateTodoItemsSuccess,
+  deleteTodoItemList,
+  deleteTodoItemSucess
 } from '@/store/slices/todo'
 import {
   getTodo as fetchTodo,
@@ -23,7 +25,8 @@ import {
   getDetailTodo as getDetailTodoAction,
   updateTodo as updateTodoAction,
   postTodoItems,
-  updateTodoItems as updateTodoItemsAct
+  updateTodoItems as updateTodoItemsAct,
+  deleteTodoItemsList
 } from './actions/todoAction'
 
 function* fetchTodosSagas(action) {
@@ -112,6 +115,16 @@ function* updateTodoListSaga(action) {
   }
 }
 
+function* deleteTodoListSagas(action) {
+  try {
+    yield call(deleteTodoItemsList, action?.payload)
+    yield put({ type: deleteTodoItemSucess.toString() })
+    // yield put({ type: getDetailTodo.toString(), payload: res?.data.parent })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 function* todoSaga() {
   yield takeEvery(getTodo.toString(), fetchTodosSagas)
   yield takeEvery(postTodo.toString(), postTodoSagas)
@@ -120,6 +133,7 @@ function* todoSaga() {
   yield takeEvery(updateTodo.toString(), updateTodoSagas)
   yield takeEvery(postTodoList.toString(), postTodoListSagas)
   yield takeEvery(updateTodoItems.toString(), updateTodoListSaga)
+  yield takeEvery(deleteTodoItemList.toString(), deleteTodoListSagas)
 }
 
 export default todoSaga

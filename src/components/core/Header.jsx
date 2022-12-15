@@ -3,7 +3,6 @@ import React from 'react'
 function Header() {
   return (
     <div
-      data-cy='header'
       className='h-[105px] bg-sky-500 text-white'
     >
       <div

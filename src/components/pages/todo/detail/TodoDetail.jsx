@@ -52,10 +52,21 @@ function TodoDetail({
         handleUpdateTodo={handleUpdateTodo}
         handleCreateTodos={handleCreateTodos}
       />
-      <DetailList
-        list={data?.detail?.todo_items}
-        handleUpdateTodoItems={handleUpdateTodoItems}
-      />
+      <div
+        className='pb-10'
+      >
+        {
+          data?.detail?.todo_items?.length > 0 && (
+            data?.detail?.todo_items?.map((item, index) => (
+              <DetailList
+                item={item}
+                key={index}
+                handleUpdateTodoItems={handleUpdateTodoItems}
+              />
+            ))
+          )
+        }
+      </div>
     </Fragment>
   )
 }
