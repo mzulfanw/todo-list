@@ -8,6 +8,7 @@ import { deleteTodoItemList, getDetailTodo } from '@/store/slices/todo'
 import { useParams } from 'react-router-dom'
 function DetailList({
   item,
+  index,
   handleUpdateTodoItems = () => { }
 }) {
   const { id } = useParams()
@@ -50,14 +51,11 @@ function DetailList({
     }, 3000)
   }
 
-
-
-
-
   return (
     <Fragment>
       <div
         className='bg-white shadow-md mb-4 h-[80px] flex items-center px-6 justify-between'
+        data-cy={`todo-item-${index}`}
       >
         <div className='flex gap-4 items-center justify-between'>
           <Checkbox
@@ -65,20 +63,23 @@ function DetailList({
             value={item.id}
             checked={checked}
             onChange={() => { handleUpdateTodo(item) }}
+            data-cy='todo-item-checkbox'
           />
-          <Indicator type={item.priority} />
-          <span>{item.title}</span>
+          <Indicator data-cy='todo-item-priority-indicator' type={item.priority} />
+          <span data-cy='todo-item-title'>{item.title}</span>
         </div>
         <div>
           <Icon
             path={TRASH}
             classes='cursor-pointer'
             onClick={() => { (handleDeleteList(item.id, item.title)) }}
+            data-cy='todo-item-delete-button'
           />
         </div>
       </div>
       <Modal
         open={isOpen}
+        data-cy='modal-delete'
       >
         <div className='flex-col items-center justify-center text-center '>
           <div>
@@ -86,9 +87,11 @@ function DetailList({
               path={WARNING}
               classes='block mx-auto mt-[30px]'
               maxWidth={68}
+              data-cy='modal-delete-icon'
             />
             <p
               className='text-lg my-[46px] font-normal'
+              data-cy='modal-delete-title'
             >
               Apakah anda yakin menghapus item &nbsp;
               <strong>{`"${title}"`}</strong>
@@ -101,6 +104,7 @@ function DetailList({
               onClick={() => {
                 setIsOpen(false)
               }}
+              data-cy='modal-delete-cancel-button'
             >
               <span>Batal</span>
             </Button>
@@ -108,6 +112,7 @@ function DetailList({
               classes='bg-red-500 text-white w-[150px] h-[54px] font-bold font-poppins'
               // text='Hapus'
               onClick={handleDelete}
+              data-cy='modal-delete-confirm-button'
             >
               <span>Hapus</span>
             </Button>
@@ -120,6 +125,7 @@ function DetailList({
 
 DetailList.propTypes = {
   item: PropTypes.object,
+  index: PropTypes.number,
   handleUpdateTodoItems: PropTypes.func
 }
 

@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery, delay } from 'redux-saga/effects'
 import {
   getTodo,
   getTodoSuccess,
@@ -61,7 +61,7 @@ function* deleteTodoSagas(action) {
     yield call(delTodo, action?.payload)
 
     yield put({ type: deleteTodoSuccess.toString() })
-
+    delay(3000, true)
     yield put({ type: getTodo.toString() })
   } catch (err) {
     console.log(err)
@@ -84,7 +84,7 @@ function* getDetailTodoSaga(action) {
 function* updateTodoSagas(action) {
   try {
     const res = yield call(updateTodoAction, action?.payload)
-
+    console.log('here')
     if (res) {
       yield put({
         type: updateTodoSuccess.toString()

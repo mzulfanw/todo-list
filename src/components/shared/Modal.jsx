@@ -6,7 +6,8 @@ function Modal({
   open = false,
   onClose = () => { },
   width,
-  children
+  children,
+  ...other
 }) {
   return (
     <Transition
@@ -47,7 +48,10 @@ function Modal({
             leaveFrom='opacity-100 scale-100'
             leaveTo='opacity-0 scale-95'
           >
-            <div className={`inline-block w-full ${width ? width : 'max-w-md'} p-6 my-8  text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl`}>
+            <div
+              className={`inline-block w-full ${width ? width : 'max-w-md'} p-6 my-8  text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl`}
+              {...other}
+            >
               <Dialog.Panel>
                 {children}
               </Dialog.Panel>

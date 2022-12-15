@@ -35,13 +35,15 @@ function HomeTodo({
             onClose={() => {
               setModal(false)
             }}
+            data-cy='modal-information'
           >
             <div className='flex gap-3'>
               <Icon
                 path={SUCCESS}
                 maxWidth={18}
+                data-cy='modal-information-icon'
               />
-              <p>Activity berhasil dihapus</p>
+              <p data-cy='modal-information-title'>Activity berhasil dihapus</p>
             </div>
           </Modal>
         )
